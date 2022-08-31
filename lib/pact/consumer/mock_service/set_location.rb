@@ -11,6 +11,7 @@ module Pact
       end
 
       def call env
+        @last_call = Time.now
         response = @app.call(env)
         env[HTTP_X_PACT_MOCK_SERVICE] ? add_location_header_to_response(response) : response
       end
@@ -21,6 +22,10 @@ module Pact
 
       def shutdown
         @app.shutdown
+      end
+
+      def get_last_call
+        @last_call
       end
 
     end

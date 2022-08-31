@@ -18,6 +18,10 @@ All requests to the "administration" endpoints listed above must contain the hea
 
 As the Pact mock service can be used as a standalone executable and administered via HTTP, it can be used for testing with any language. All that is required is a library in the native language to create the HTTP calls listed above. Check out [docs.pact.io](https://docs.pact.io) for a list of implemented languages. If you are interested in creating bindings in a new language, have a chat to one of us on the [pact-dev Google group][pact-dev].
 
+## Changes In This Fork
+* Save a timestamp for that last integration to a mock service.
+* When creating a new mock for a given provider + consumer, re-use an existing mock if there are no interactions to that mock for the last 90 minutes. This helps to reduce the number of open ports when there are several mocks running at the same time.
+
 ## Installation
 
 ### Without Ruby
